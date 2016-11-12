@@ -19,12 +19,9 @@ function calculatorModule(){
    */
 
    function getLoad(x){
-    if(typeof x === 'number'){
+    validate(x);
     total = x;
     return total;
-    } else {
-      throw new Error();
-    }
    }
 
 
@@ -44,11 +41,8 @@ function calculatorModule(){
    */
 
    function sum(x){
-    if(typeof x === 'number'){
+    validate(x);
     total += x;
-    } else {
-      throw new Error();
-    }
    }
 
 
@@ -58,11 +52,8 @@ function calculatorModule(){
    */
 
    function difference(x){
-    if(typeof x === 'number'){
+    validate(x);
     total -= x;
-    } else {
-      throw new Error();
-    }
    }
 
 
@@ -72,11 +63,8 @@ function calculatorModule(){
    */
 
    function product(x){
-    if(typeof x === 'number'){
+    validate(x);
     total *= x;
-    } else {
-      throw new Error();
-    }
    }
 
 
@@ -86,11 +74,8 @@ function calculatorModule(){
    */
 
    function quotient(x){
-    if(typeof x === 'number'){
+    validate(x);
     total /= x;
-    } else {
-      throw new Error();
-    }
    }
 
 
@@ -127,6 +112,12 @@ function calculatorModule(){
   /**
    * Validation
      */
+
+    function validate(x){
+      if(typeof x !== 'number'){
+        throw Error();
+      }
+    }
 
 
 
