@@ -19,7 +19,7 @@ function calculatorModule(){
    */
 
    function getLoad(x){
-    validate(x);
+    // validate(x);
     total = x;
     return total;
    }
@@ -41,7 +41,7 @@ function calculatorModule(){
    */
 
    function sum(x){
-    validate(x);
+    // validate(x);
     total += x;
    }
 
@@ -52,7 +52,7 @@ function calculatorModule(){
    */
 
    function difference(x){
-    validate(x);
+    // validate(x);
     total -= x;
    }
 
@@ -63,7 +63,7 @@ function calculatorModule(){
    */
 
    function product(x){
-    validate(x);
+    // validate(x);
     total *= x;
    }
 
@@ -74,7 +74,7 @@ function calculatorModule(){
    */
 
    function quotient(x){
-    validate(x);
+    // validate(x);
     total /= x;
    }
 
@@ -113,21 +113,30 @@ function calculatorModule(){
    * Validation
      */
 
-    function validate(x){
-      if(typeof x !== 'number'){
-        throw Error();
-      }
+    // function validate(x){
+    //   if(typeof x !== 'number'){
+    //     throw Error();
+    //   }
+    // }
+
+    function validateNumber(a){
+      return function(x){
+        if (typeof x !== 'number'){
+          throw new Error();
+        }
+        return a(x);
+      };
     }
 
 
 
   return {
-    load: getLoad,
+    load: validateNumber(getLoad),
     getTotal: theTotal,
-    add: sum,
-    subtract: difference,
-    multiply: product,
-    divide: quotient,
+    add: validateNumber(sum),
+    subtract: validateNumber(difference),
+    multiply: validateNumber(product),
+    divide: validateNumber(quotient),
     recallMemory: theMemory,
     saveMemory: savedMemory,
     clearMemory: clearMemory
